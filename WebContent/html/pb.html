@@ -1,0 +1,37 @@
+<!DOCTYPE html>  
+<html >  
+<head>  
+<meta  charset="UTF-8">  
+<title>Welcome to Progress Bar</title>
+
+<script src="../script/angular.min.js"></script>
+<script src="../script/pb.js"></script>
+
+<style>
+#progressBar {
+  position: relative;
+  width: 21%;
+  height: 30px;
+  background-color: #ddd;
+}
+
+</style>
+</head>  
+<body>  
+<div ng-app="pb">
+		<div ng-controller="pbController">
+			<h3>Progress Bars Demo</h3>
+			<div id="progressBar" ng-repeat="y in pgVO.bars track by $index">
+				<pre><div ng-style="pBar{{$index}}"><span style="position: relative; top: 50%; transform: translateY(-50%);">{{y}}%</span></div></pre>
+			</div>
+			<br>
+			<select ng-model="selectedPb">
+				<option ng-repeat="y in pgVO.bars track by $index" value={{$index}}>#progress{{$index+1}}</option>
+			</select>
+			<button ng-repeat="x in pgVO.buttons" ng-click="callProgress($index, selectedPb)">{{x}}</button>
+			<br>
+			<button confirmed-click = "closeWindow()" ng-confirm-click="Are you sure you want to close window?">Close Window</button>
+		</div>
+	</div>  
+</body>  
+</html>
